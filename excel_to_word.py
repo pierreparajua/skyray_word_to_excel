@@ -109,23 +109,21 @@ def main():
     choix = input("Souhaitez vous lancer les modifications ? ( y ou n): ")
     if choix == "y":
         words_instances = create_word_instances(files)
-        choix_langue = True
-        while choix_langue:
+        while True:
             choix_langue = input("Choisissez la anglais ou francais: \n\t1: Anglais \n\t2: Francais \nRéponse: ")
             if choix_langue == "1":
                 for instance, file_name in zip(words_instances, files):
                     cells = get_all_cells(instance)
                     create_modified_template(cells, requirement, level)
                     instance.save(PATH_RESULT / file_name)
-                    choix_langue = False
+                break
             elif choix_langue == "2":
                 for instance, file_name in zip(words_instances, files):
                     cells = get_all_cells(instance)
                     create_modified_template(cells, exigence, level)
                     instance.save(PATH_RESULT / file_name)
-                    choix_langue = False
+                break
             else:
                 print("Vous devez taper '1' ou '2'")
-                choix_langue = True
     if choix == "n":
         exit()
